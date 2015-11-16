@@ -4,7 +4,7 @@ public class BankAccount {
 	
 	private int localBalance;
 	
-	public void call(int cardId, long currThread, BankAccount account) {
+	public void call(int cardId, BankAccount account) {
 		System.out.println("Card ID: " + cardId + ", (Thread Id: " + Thread.currentThread().getId() + ")");
 		System.out.println("Transaction Type: " + Card.type);
 		System.out.println("Transaction Amount: " + Card.transactionAmount);

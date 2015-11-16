@@ -6,13 +6,11 @@ public class Card extends Thread {
 	private int cardId;
 	private BankAccount account;
 	private int localBalance;
-	private long currThread;
 	static String type;
 	
 	public Card(int cardId, BankAccount account, int currthread) {
 		this.setCardId(cardId);
 		this.account = account;
-		this.currThread = getId();
 	}
 	
 	
@@ -27,14 +25,14 @@ public class Card extends Thread {
 						transactionAmount = ((int) (Math.random()*10));
 						account.withdraw(transactionAmount);
 						type = "Withdrawal";
-						account.call(cardId, currThread, account);
+						account.call(cardId, account);
 					}
 				} else {
 					synchronized(account) {
 						transactionAmount = ((int) (Math.random()*10));
 						account.deposit(transactionAmount);
 						type = "Deposit";
-						account.call(cardId, currThread, account);
+						account.call(cardId, account);
 					}
 				}
 				sleep(200);
@@ -42,9 +40,6 @@ public class Card extends Thread {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		//System.out.println("THREAD: " + getId() + " _ " + "Local Balance: " + localBalance);
-		//System.out.println();
-		
 		
 	}
 
