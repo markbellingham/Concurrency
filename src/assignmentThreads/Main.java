@@ -21,7 +21,7 @@ public class Main {
 			}
 		
 	  }
-
+	
 	
 	public BankAccount getLocalBalance() {
 		return localBalance;

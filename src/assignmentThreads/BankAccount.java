@@ -16,13 +16,13 @@ public class BankAccount {
 		localBalance = startingBalance;
 	}
 	
-	public int withdraw(int a) {
-		localBalance -= a;
+	public int withdraw(int transactionAmount) {
+		localBalance -= transactionAmount;
 		return localBalance;
 	}
 	
-	public int deposit(int a) {
-		localBalance += a;
+	public int deposit(int transactionAmount) {
+		localBalance += transactionAmount;
 		return localBalance;
 	}
 }

@@ -6,6 +6,7 @@ public class Card extends Thread {
 	private int cardId;
 	private BankAccount account;
 	private int localBalance;
+	private int cardBalance;
 	static String type;
 	
 	public Card(int cardId, BankAccount account, int currthread) {
@@ -26,6 +27,7 @@ public class Card extends Thread {
 						account.withdraw(transactionAmount);
 						type = "Withdrawal";
 						account.call(cardId, account);
+						cardBalance -= transactionAmount;						
 					}
 				} else {
 					synchronized(account) {
@@ -33,10 +35,12 @@ public class Card extends Thread {
 						account.deposit(transactionAmount);
 						type = "Deposit";
 						account.call(cardId, account);
+						cardBalance += transactionAmount;
 					}
 				}
 				sleep(200);
 			}
+			System.out.println("THREAD " + getId() + " " + cardBalance);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
