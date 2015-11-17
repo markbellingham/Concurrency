@@ -9,15 +9,15 @@ public class Card extends Thread {
 	private int cardBalance;
 	static String type;
 	
-	public Card(int cardId, BankAccount account, int currthread) {
+	public Card(int cardId, BankAccount account, int localBalance) {
 		this.setCardId(cardId);
 		this.account = account;
+		this.localBalance = localBalance;
 	}
 	
 	
 	@Override
-	public void run() {
-		
+	public void run() {		
 		
 		try {
 			for (int i = 0; i < 20; i++) {
@@ -27,7 +27,7 @@ public class Card extends Thread {
 						account.withdraw(transactionAmount);
 						type = "Withdrawal";
 						account.call(cardId, account);
-						cardBalance -= transactionAmount;						
+						cardBalance -= transactionAmount;
 					}
 				} else {
 					synchronized(account) {
@@ -40,10 +40,10 @@ public class Card extends Thread {
 				}
 				sleep(200);
 			}
-			System.out.println("THREAD " + getId() + " " + cardBalance);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		System.out.println("THREAD " + getId() + "    Total Transaction amount: " + cardBalance);
 		
 	}
 
@@ -51,18 +51,12 @@ public class Card extends Thread {
 	public int getCardId() {
 		return cardId;
 	}
-
-
 	public void setCardId(int cardId) {
 		this.cardId = cardId;
 	}
-
-
 	public int getLocalBalance() {
 		return localBalance;
 	}
-
-
 	public void setLocalBalance(int localBalance) {
 		this.localBalance = localBalance;
 	}
