@@ -30,7 +30,7 @@ public class Card extends Thread {
 						transactionAmount = ((int) (Math.random()*10));
 						account.withdraw(transactionAmount);
 						type = "Withdrawal";
-						account.call(cardId, account);
+						account.call(cardId, account, type, transactionAmount);
 						cardBalance -= transactionAmount;
 					}
 				} else {
@@ -38,7 +38,7 @@ public class Card extends Thread {
 						transactionAmount = ((int) (Math.random()*10));
 						account.deposit(transactionAmount);
 						type = "Deposit";
-						account.call(cardId, account);
+						account.call(cardId, account, type, transactionAmount);
 						cardBalance += transactionAmount;
 					}
 				}
