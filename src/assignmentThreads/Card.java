@@ -31,18 +31,18 @@ public class Card extends Thread {
 						transactionAmount = ((int) (Math.random()*10));
 						account.withdraw(transactionAmount);
 						type = "Withdrawal";
-						account.call(transactionNumber, account, type, transactionAmount);
+						account.print(transactionNumber, account, type, transactionAmount);
 						cardBalance -= transactionAmount;
-						transactionIncrement();
+						transactionNumber++;
 					}
 				} else {
 					synchronized(account) {
 						transactionAmount = ((int) (Math.random()*10));
 						account.deposit(transactionAmount);
 						type = "Deposit";
-						account.call(transactionNumber, account, type, transactionAmount);
+						account.print(transactionNumber, account, type, transactionAmount);
 						cardBalance += transactionAmount;
-						transactionIncrement();
+						transactionNumber++;
 					}
 				}
 				//Makes the thread pause for 0.2 seconds which helps to interrupt the flow of the threads
@@ -57,11 +57,6 @@ public class Card extends Thread {
 		
 	}
 	
-	
-	public static int transactionIncrement(){
-		transactionNumber++;
-		return transactionNumber;
-	}
 
 	
 	//Getters and Setters for cardId and localBalance

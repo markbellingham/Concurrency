@@ -33,7 +33,7 @@ public class BankAccount {
 	
 	
 	//Prints the results of each transaction showing that they occur as atomic units
-	public void call(int transactionNumber, BankAccount account, String type, int transactionAmount) {
+	public void print(int transactionNumber, BankAccount account, String type, int transactionAmount) {
 		System.out.print("   " + String.format("%02d", transactionNumber) + "(" + Thread.currentThread().getId() + ")");
 		switch(type) {
 		case "Withdrawal":
