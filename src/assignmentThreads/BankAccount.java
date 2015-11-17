@@ -4,6 +4,7 @@ public class BankAccount {
 	
 	private int localBalance;
 	
+	//Prints the results of each transaction showing that they occur as atomic units 
 	public void call(int cardId, BankAccount account) {
 		System.out.println("Card ID: " + cardId + ", (Thread Id: " + Thread.currentThread().getId() + ")");
 		System.out.println("Transaction Type: " + Card.type);
@@ -16,6 +17,8 @@ public class BankAccount {
 		localBalance = startingBalance;
 	}
 	
+	//Method for withdrawing from account
+	//If the card owner tries to take more than is available, they are forced to wait
 	public int withdraw(int transactionAmount) {
 		while (transactionAmount > localBalance) {
 			try {
@@ -28,6 +31,8 @@ public class BankAccount {
 		return localBalance;
 	}
 	
+	//Method for depositing into account
+	//When completed it notifies all threads so that threads waiting can check again if they are able to withdraw
 	public int deposit(int transactionAmount) {
 		localBalance += transactionAmount;
 		notifyAll();
