@@ -39,10 +39,10 @@ public class BankAccount {
 		//Switch decides position of the transaction depending on whether it's a withdrawal or deposit
 		switch(type) {
 		case "Withdrawal":
-			System.out.print("\t\t   " + transactionAmount + "\t\t\t\t\t\t   ");
+			System.out.print("\t|\t   " + transactionAmount + "\t\t|\t\t\t|\t   ");
 			break;
 		case "Deposit":
-			System.out.print("\t\t\t\t\t   " + transactionAmount + "\t\t\t   ");
+			System.out.print("\t|\t\t\t|\t   " + transactionAmount + "\t\t|\t   ");
 			break;
 		}			
 		//Prints out the running total
