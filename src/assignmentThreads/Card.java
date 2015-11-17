@@ -9,16 +9,16 @@ public class Card extends Thread {
 	private int localBalance;
 	private int cardBalance;
 	static String type;
-	private int transactionNumber = 1;
+	private static int transactionNumber = 1;
 	
+	//Constructor
 	public Card(BankAccount account, int localBalance) {
-		//this.setCardId(cardId);
 		this.account = account;
 		this.localBalance = localBalance;
 	}
 	
 	
-	// run() is started by the start() method in the main class
+	// run() method is started by the start() method in the main class
 	@Override
 	public void run() {
 		
@@ -58,7 +58,7 @@ public class Card extends Thread {
 	}
 	
 	
-	public int transactionIncrement(){
+	public static int transactionIncrement(){
 		transactionNumber++;
 		return transactionNumber;
 	}
