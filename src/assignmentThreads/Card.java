@@ -3,7 +3,7 @@ package assignmentThreads;
 public class Card extends Thread {
 	
 	//Create variables
-	public static int transactionAmount;
+	public int transactionAmount;
 	private int cardId;
 	private BankAccount account;
 	private int localBalance;
@@ -26,7 +26,7 @@ public class Card extends Thread {
 			//Each card makes 20 transactions
 			for (int i = 0; i < 20; i++) {
 				if (Math.random() > 0.5) {
-					//Synchronised makes this set of instructions happen as a single atomic action
+					//Synchronised makes this whole set of instructions happen as a single atomic action
 					synchronized(account) {
 						transactionAmount = ((int) (Math.random()*10));
 						account.withdraw(transactionAmount);
@@ -53,8 +53,7 @@ public class Card extends Thread {
 		}
 		//Prints the balance of transactions for each card
 		System.out.println();
-		System.out.println("THREAD " + getId() + "    Total Transaction amount: " + cardBalance);
-		
+		System.out.println("THREAD " + getId() + "    Total Transaction amount: " + cardBalance);		
 	}
 	
 

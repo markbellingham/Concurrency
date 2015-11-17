@@ -34,7 +34,9 @@ public class BankAccount {
 	
 	//Prints the results of each transaction showing that they occur as atomic units
 	public void print(int transactionNumber, BankAccount account, String type, int transactionAmount) {
+		//Print out the transaction number (formatted to 2 digits) and thread number
 		System.out.print("   " + String.format("%02d", transactionNumber) + "(" + Thread.currentThread().getId() + ")");
+		//Switch decides position of the transaction depending on whether it's a withdrawal or deposit
 		switch(type) {
 		case "Withdrawal":
 			System.out.print("\t\t   " + transactionAmount + "\t\t\t\t\t\t   ");
@@ -43,6 +45,7 @@ public class BankAccount {
 			System.out.print("\t\t\t\t\t   " + transactionAmount + "\t\t\t   ");
 			break;
 		}			
+		//Prints out the running total
 		System.out.print(localBalance);
 		System.out.println();
 		}

@@ -18,6 +18,7 @@ public class Main {
 		//Instantiates the account
 		BankAccount account = new BankAccount(localBalance);
 		
+		//Prints the headers for the statement
 		System.out.println("Transaction\t|\tWithdrawal\t|\tDeposit\t\t|\tBalance");
 		
 		//Initialises each card and starts the associated thread
