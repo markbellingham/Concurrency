@@ -9,9 +9,10 @@ public class Card extends Thread {
 	private int localBalance;
 	private int cardBalance;
 	static String type;
+	private int transactionNumber = 1;
 	
-	public Card(int cardId, BankAccount account, int localBalance) {
-		this.setCardId(cardId);
+	public Card(BankAccount account, int localBalance) {
+		//this.setCardId(cardId);
 		this.account = account;
 		this.localBalance = localBalance;
 	}
@@ -19,7 +20,7 @@ public class Card extends Thread {
 	
 	// run() is started by the start() method in the main class
 	@Override
-	public void run() {		
+	public void run() {
 		
 		try {
 			//Each card makes 20 transactions
@@ -30,16 +31,18 @@ public class Card extends Thread {
 						transactionAmount = ((int) (Math.random()*10));
 						account.withdraw(transactionAmount);
 						type = "Withdrawal";
-						account.call(cardId, account, type, transactionAmount);
+						account.call(transactionNumber, account, type, transactionAmount);
 						cardBalance -= transactionAmount;
+						transactionIncrement();
 					}
 				} else {
 					synchronized(account) {
 						transactionAmount = ((int) (Math.random()*10));
 						account.deposit(transactionAmount);
 						type = "Deposit";
-						account.call(cardId, account, type, transactionAmount);
+						account.call(transactionNumber, account, type, transactionAmount);
 						cardBalance += transactionAmount;
+						transactionIncrement();
 					}
 				}
 				//Makes the thread pause for 0.2 seconds which helps to interrupt the flow of the threads
@@ -49,8 +52,15 @@ public class Card extends Thread {
 			e.printStackTrace();
 		}
 		//Prints the balance of transactions for each card
+		System.out.println();
 		System.out.println("THREAD " + getId() + "    Total Transaction amount: " + cardBalance);
 		
+	}
+	
+	
+	public int transactionIncrement(){
+		transactionNumber++;
+		return transactionNumber;
 	}
 
 	

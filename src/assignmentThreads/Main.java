@@ -18,9 +18,11 @@ public class Main {
 		//Instantiates the account
 		BankAccount account = new BankAccount(localBalance);
 		
+		System.out.println("Transaction\t|\tWithdrawal\t|\tDeposit\t\t|\tBalance");
+		
 		//Initialises each card and starts the associated thread
 		for (int i = 1; i <= numberOfCards; i++) {
-			Card j = new Card(i, account, localBalance);
+			Card j = new Card(account, localBalance);
 			j.start(); //Starts the run() method in the Card class
 			}
 		

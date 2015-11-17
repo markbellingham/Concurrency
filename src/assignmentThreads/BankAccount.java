@@ -32,7 +32,23 @@ public class BankAccount {
 	}
 	
 	
-	//Prints the results of each transaction showing that they occur as atomic units 
+	//Prints the results of each transaction showing that they occur as atomic units
+	public void call(int transactionNumber, BankAccount account, String type, int transactionAmount) {
+		System.out.print("   " + String.format("%02d", transactionNumber) + "(" + Thread.currentThread().getId() + ")");
+		switch(type) {
+		case "Withdrawal":
+			System.out.print("\t\t   " + transactionAmount + "\t\t\t\t\t\t   ");
+			break;
+		case "Deposit":
+			System.out.print("\t\t\t\t\t   " + transactionAmount + "\t\t\t   ");
+			break;
+		}			
+		System.out.print(localBalance);
+		System.out.println();
+		}
+	
+	
+	/*
 	public void call(int cardId, BankAccount account, String type, int transactionAmount) {
 		System.out.println("Card ID: " + cardId + ", (Thread Id: " + Thread.currentThread().getId() + ")");
 		System.out.println("Transaction Type: " + type);
@@ -40,4 +56,6 @@ public class BankAccount {
 		System.out.println("Account Balance: " + localBalance);
 		System.out.println();
 	}
+	*/
+	
 }
