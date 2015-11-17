@@ -4,6 +4,7 @@ public class Main {
 	
 	private BankAccount localBalance;
 
+	//Constructor for Bank Account
 	public Main(BankAccount localBalance) {
 		this.setLocalBalance(localBalance);
 	}

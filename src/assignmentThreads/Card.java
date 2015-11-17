@@ -3,15 +3,15 @@ package assignmentThreads;
 public class Card extends Thread {
 	
 	//Create variables
-	public int transactionAmount;
-	private int cardId;
 	private BankAccount account;
+	private int transactionAmount;
 	private int localBalance;
 	private int cardBalance;
-	static String type;
+	String type;
+	//This variable is static because the value needs to carry through each thread
 	private static int transactionNumber = 1;
 	
-	//Constructor
+	//Constructor for Card
 	public Card(BankAccount account, int localBalance) {
 		this.account = account;
 		this.localBalance = localBalance;
@@ -51,20 +51,14 @@ public class Card extends Thread {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		//Prints the balance of transactions for each card
+		//Prints the balance of transactions for each card, starting on a new line
 		System.out.println();
 		System.out.println("THREAD " + getId() + "    Total Transaction amount: " + cardBalance);		
 	}
 	
 
 	
-	//Getters and Setters for cardId and localBalance
-	public int getCardId() {
-		return cardId;
-	}
-	public void setCardId(int cardId) {
-		this.cardId = cardId;
-	}
+	//Getters and Setters for localBalance
 	public int getLocalBalance() {
 		return localBalance;
 	}
