@@ -34,10 +34,7 @@ public class Card extends Thread {
 					synchronized(account) {
 						transactionAmount = ((int) (Math.random()*10));
 						localBalance = account.withdraw(transactionAmount);
-						//type = "Withdrawal";
-						//account.print(transactionNumber, account, type, transactionAmount);
 						cardBalance -= transactionAmount;
-						//transactionNumber++;
 						Integer[] array = {(int)getId(),transactionAmount,0,localBalance};
 						getTransaction().add(array);
 					}
@@ -45,10 +42,7 @@ public class Card extends Thread {
 					synchronized(account) {
 						transactionAmount = ((int) (Math.random()*10));
 						localBalance = account.deposit(transactionAmount);
-						//type = "Deposit";
-						//account.print(transactionNumber, account, type, transactionAmount);
 						cardBalance += transactionAmount;
-						//transactionNumber++;
 						Integer[] array = {(int)getId(),0,transactionAmount,localBalance};
 						getTransaction().add(array);
 					}
