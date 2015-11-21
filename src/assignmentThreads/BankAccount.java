@@ -2,11 +2,11 @@ package assignmentThreads;
 
 public class BankAccount {
 	
-	private static int localBalance;
+	private int localBalance;
 	private static int transactionNumber;
 	private static int threadNumber;
-	private static int withdrawal;
-	private static int deposit;
+	private static int withdrawalAmount;
+	private static int depositAmount;
 	private static int balance;
 	
 	//Associates the starting balance with the account
@@ -41,17 +41,17 @@ public class BankAccount {
 		for (int i = 0; i < Card.getTransaction().size(); i++) {
 			transactionNumber = i + 1;
 			threadNumber = Card.getTransaction().get(i)[0];
-			withdrawal = Card.getTransaction().get(i)[1];
-			deposit = Card.getTransaction().get(i)[2];
+			withdrawalAmount = Card.getTransaction().get(i)[1];
+			depositAmount = Card.getTransaction().get(i)[2];
 			balance = Card.getTransaction().get(i)[3];
 			
 			System.out.print("   " + transactionNumber);
 			System.out.print(" (" + threadNumber + ")\t|\t   ");
-			if (withdrawal > 0) {System.out.print(withdrawal + "\t\t|\t\t\t|\t   ");}
-			if (deposit > 0) {System.out.print("\t\t|\t   " + deposit + "\t\t|\t   ");}
+			if (withdrawalAmount > 0) {System.out.print(withdrawalAmount + "\t\t|\t\t\t|\t   ");}
+			if (depositAmount > 0) {System.out.print("\t\t|\t   " + depositAmount + "\t\t|\t   ");}
 			System.out.print(balance);
 			System.out.println();
-			withdrawal = 0; deposit = 0;
+			withdrawalAmount = 0; depositAmount = 0;
 		}
 	}
 	

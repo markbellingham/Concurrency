@@ -9,7 +9,8 @@ public class Card extends Thread {
 	private int transactionAmount;
 	private int localBalance;
 	private int cardBalance;
-	
+
+	//ArrayList to store each transaction
 	private static ArrayList<Integer[]> transaction = new ArrayList<Integer[]>();
 	
 	//Constructor for Card
@@ -29,7 +30,9 @@ public class Card extends Thread {
 				if (Math.random() > 0.5) {
 					//Synchronised makes this whole set of instructions happen as a single atomic action
 					synchronized(account) {
-						transactionAmount = ((int) (Math.random()*10));
+						do {
+							transactionAmount = ((int) (Math.random()*10));
+						} while (transactionAmount == 0);						
 						localBalance = account.withdraw(transactionAmount);
 						cardBalance -= transactionAmount;
 						Integer[] array = {(int)getId(),transactionAmount,0,localBalance};
@@ -37,7 +40,9 @@ public class Card extends Thread {
 					}
 				} else {
 					synchronized(account) {
-						transactionAmount = ((int) (Math.random()*10));
+						do {
+							transactionAmount = ((int) (Math.random()*10));
+						} while (transactionAmount == 0);
 						localBalance = account.deposit(transactionAmount);
 						cardBalance += transactionAmount;
 						Integer[] array = {(int)getId(),0,transactionAmount,localBalance};
