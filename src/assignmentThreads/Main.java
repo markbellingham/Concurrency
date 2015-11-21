@@ -14,14 +14,22 @@ public class Main {
 		//Instantiates the account
 		BankAccount account = new BankAccount(localBalance);
 		
+		//Create array for the threads
+		Card threadArray[] = new Card[numberOfCards+1];
+		
 		//Initialises each card and starts the associated thread
 		for (int i = 1; i <= numberOfCards; i++) {
-			Card j = new Card(account, localBalance); //Creates a new instance of Card
+			Card j = new Card(account, localBalance); //Creates a new instance of Card			
 			j.start();
+			//Add threads to the array
+			threadArray[i] = j;			
+		}
+		
+		//This loop ensures that the rest of the program will wait for all threads to complete
+		for (int i = 1; i < threadArray.length; i++) {
 			try {
-				j.join();
+				threadArray[i].join();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

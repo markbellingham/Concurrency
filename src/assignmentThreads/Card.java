@@ -9,9 +9,6 @@ public class Card extends Thread {
 	private int transactionAmount;
 	private int localBalance;
 	private int cardBalance;
-	String type;
-	//This variable is static because the value needs to carry through each thread
-	//private static int transactionNumber = 1;
 	
 	private static ArrayList<Integer[]> transaction = new ArrayList<Integer[]>();
 	
@@ -54,7 +51,7 @@ public class Card extends Thread {
 			e.printStackTrace();
 		}
 		//Prints the balance of transactions for each card
-		System.out.println("THREAD " + getId() + "    Total Transaction amount: " + cardBalance);		
+		System.out.println("THREAD " + getId() + "    Card transaction amount: " + cardBalance);		
 	}
 	
 
