@@ -44,7 +44,9 @@ public class Main {
 			System.out.println("-------------------------------------------------------------------------------");
 			BankAccount.print();			
 		} else {
-			System.out.println("Error: ");
+			//If the user tries to run the program with anything other than 2 arguments
+			//The program will exit and display the following messages
+			System.out.println("Error: incorrect usage");
 			System.out.println("Usage: java assignmentThreads/Main [number of cards] [opening balance]");
 		}
 
