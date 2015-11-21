@@ -2,7 +2,12 @@ package assignmentThreads;
 
 public class BankAccount {
 	
-	private int localBalance;
+	private static int localBalance;
+	private static int transactionNumber;
+	private static int threadNumber;
+	private static int withdrawal;
+	private static int deposit;
+	private static int balance;
 	
 	//Associates the starting balance with the account
 	public BankAccount(int startingBalance) {
@@ -32,10 +37,28 @@ public class BankAccount {
 	}
 	
 	
-	//Prints the results of each transaction showing that they occur as atomic units
+	public static void print() {
+		for (int i = 0; i < Card.getTransaction().size(); i++) {
+			transactionNumber = i + 1;
+			threadNumber = Card.getTransaction().get(i)[0];
+			withdrawal = Card.getTransaction().get(i)[1];
+			deposit = Card.getTransaction().get(i)[2];
+			balance = Card.getTransaction().get(i)[3];
+			
+			System.out.print("   " + transactionNumber);
+			System.out.print(" (" + threadNumber + ")\t|\t   ");
+			if (withdrawal > 0) {System.out.print(withdrawal + "\t\t|\t\t\t|\t   ");}
+			if (deposit > 0) {System.out.print("\t\t|\t   " + deposit + "\t\t|\t   ");}
+			System.out.print(balance);
+			System.out.println();
+			withdrawal = 0; deposit = 0;
+		}
+	}
+	/*
+	//Prints the results of each transaction
 	public void print(int transactionNumber, BankAccount account, String type, int transactionAmount) {
 		//Print out the transaction number (formatted to 2 digits) and thread number
-		System.out.print("   " + String.format("%02d", transactionNumber) + "(" + Thread.currentThread().getId() + ")");
+		System.out.print("   " + String.format("%02d", transactionNumber) + " (" + Thread.currentThread().getId() + ")");
 		//Switch decides position of the transaction depending on whether it's a withdrawal or deposit
 		switch(type) {
 		case "Withdrawal":
@@ -49,6 +72,7 @@ public class BankAccount {
 		System.out.print(localBalance);
 		System.out.println();
 		}
+	*/
 	
 	
 	/*
