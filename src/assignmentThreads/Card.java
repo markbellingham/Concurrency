@@ -30,12 +30,16 @@ public class Card extends Thread {
 				if (Math.random() > 0.5) {
 					//Synchronised makes this whole set of instructions happen as a single atomic action
 					synchronized(account) {
-						do {
+						do { //Ensures that the transactionAmount can never be 0
 							transactionAmount = ((int) (Math.random()*10));
-						} while (transactionAmount == 0);						
+						} while (transactionAmount == 0);
+						//Update the account balance
 						localBalance = account.withdraw(transactionAmount);
+						//Keep track of the individual card balance
 						cardBalance -= transactionAmount;
+						//Create an array of each individual transaction
 						Integer[] array = {(int)getId(),transactionAmount,0,localBalance};
+						//Store all transaction records in an ArrayList
 						getTransaction().add(array);
 					}
 				} else {
@@ -56,7 +60,7 @@ public class Card extends Thread {
 			e.printStackTrace();
 		}
 		//Prints the balance of transactions for each card
-		System.out.println("THREAD " + getId() + "    Card transaction amount: " + cardBalance);		
+		System.out.println("THREAD " + getId() + "  balance of transactions: " + cardBalance);		
 	}
 	
 

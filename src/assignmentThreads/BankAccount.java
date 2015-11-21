@@ -39,18 +39,21 @@ public class BankAccount {
 	
 	public static void print() {
 		for (int i = 0; i < Card.getTransaction().size(); i++) {
+			//Give all the transaction data elements easy to understand names
 			transactionNumber = i + 1;
 			threadNumber = Card.getTransaction().get(i)[0];
 			withdrawalAmount = Card.getTransaction().get(i)[1];
 			depositAmount = Card.getTransaction().get(i)[2];
 			balance = Card.getTransaction().get(i)[3];
 			
+			//Print the transactions formatted with tabs and spaces
 			System.out.print("   " + transactionNumber);
 			System.out.print(" (" + threadNumber + ")\t|\t   ");
 			if (withdrawalAmount > 0) {System.out.print(withdrawalAmount + "\t\t|\t\t\t|\t   ");}
 			if (depositAmount > 0) {System.out.print("\t\t|\t   " + depositAmount + "\t\t|\t   ");}
 			System.out.print(balance);
 			System.out.println();
+			//Reset these variables so that they don't carry through to the next transaction.
 			withdrawalAmount = 0; depositAmount = 0;
 		}
 	}
