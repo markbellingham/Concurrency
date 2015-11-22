@@ -20,14 +20,14 @@ public class Main {
 			
 			//Initialises each card and starts the associated thread
 			for (int i = 1; i <= numberOfCards; i++) {
-				Card j = new Card(account, localBalance); //Creates a new instance of Card			
+				Card j = new Card(account, localBalance);
 				j.start();
-				//Add threads to the array
+				//Add threads to the array so that they can be joined later
 				threadArray[i] = j;			
 			}
 			
-			//The join method in this loop ensures that the rest of
-			//the program will wait for all threads to complete before continuing
+			//The join method in this loop ensures that the program will
+			//wait for all threads to complete before printing the statement
 			for (int i = 1; i < threadArray.length; i++) {
 				try {
 					threadArray[i].join();
@@ -35,13 +35,16 @@ public class Main {
 					e.printStackTrace();
 				}
 			}
-			
-			//Prints the headers for the statement
+						
 			System.out.println();
 			System.out.println("Threads complete");
 			System.out.println();
+			System.out.println("Opening Balance: " + localBalance + "\tCards Used: " + numberOfCards);
+			System.out.println();
+			//Prints the formatted headers for the statement
 			System.out.println("Transaction\t|\tWithdrawal\t|\tDeposit\t\t|\tBalance");
 			System.out.println("-------------------------------------------------------------------------------");
+			//Print all the transactions
 			BankAccount.print();			
 		} else {
 			//If the user tries to run the program with anything other than 2 arguments

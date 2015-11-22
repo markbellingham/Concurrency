@@ -27,8 +27,10 @@ public class Card extends Thread {
 		try {
 			//Each card makes 20 transactions
 			for (int i = 0; i < 20; i++) {
+				//Randomly select Withdraw or Deposit
 				if (Math.random() > 0.5) {
 					//Synchronised makes this whole set of instructions happen as a single atomic action
+					//This is the method for withdrawal
 					synchronized(account) {
 						do { //Ensures that the transactionAmount can never be 0
 							transactionAmount = ((int) (Math.random()*10));
@@ -43,6 +45,7 @@ public class Card extends Thread {
 						getTransaction().add(array);
 					}
 				} else {
+					//This is the method for depositing
 					synchronized(account) {
 						do {
 							transactionAmount = ((int) (Math.random()*10));
