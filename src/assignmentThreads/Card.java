@@ -4,19 +4,19 @@ import java.util.ArrayList;
 
 public class Card extends Thread {
 	
-	//Create variables
+	// Create variables
 	private BankAccount account;
 	private int transactionAmount;
 	private int localBalance;
 	private int cardBalance;
 
-	//ArrayList to store each transaction
+	// ArrayList to store each transaction
 	private static ArrayList<Integer[]> transaction = new ArrayList<Integer[]>();
 	
-	//Constructor for Card
+	// Constructor for Card
 	public Card(BankAccount account, int localBalance) {
-		this.account = account;
-		this.localBalance = localBalance;
+		this.account 		= account;
+		this.localBalance 	= localBalance;
 	}
 	
 	
@@ -25,50 +25,46 @@ public class Card extends Thread {
 	public void run() {
 		
 		try {
-			//Each card makes 20 transactions
+			// Each card makes 20 transactions
 			for (int i = 0; i < 20; i++) {
-				//Randomly select Withdraw or Deposit
+				// Randomly select Withdraw or Deposit
 				if (Math.random() > 0.5) {
-					//Synchronised makes this whole set of instructions happen as a single atomic action
-					//This is the method for withdrawal
+					// Synchronised makes this whole set of instructions happen as a single atomic action
+					// This is the method for withdrawal
 					synchronized(account) {
-						do { //Ensures that the transactionAmount can never be 0
+						do { // Ensures that the transactionAmount can never be 0
 							transactionAmount = ((int) (Math.random()*10));
-						} while (transactionAmount == 0);
-						//Update the account balance
-						localBalance = account.withdraw(transactionAmount);
-						//Keep track of the individual card balance
-						cardBalance -= transactionAmount;
-						//Create an array of each individual transaction
-						Integer[] array = {(int)getId(),transactionAmount,0,localBalance};
-						//Store all transaction records in an ArrayList
-						getTransaction().add(array);
+						} while (transactionAmount == 0);						
+						localBalance = account.withdraw(transactionAmount);						// Update the account balance						
+						cardBalance -= transactionAmount;										// Keep track of the individual card balance						
+						Integer[] array = {(int)getId(), transactionAmount, 0, localBalance};	// Create an array of each individual transaction						
+						getTransaction().add(array);											// Store all transaction records in an ArrayList
 					}
 				} else {
-					//This is the method for depositing
+					// This is the method for depositing
 					synchronized(account) {
 						do {
 							transactionAmount = ((int) (Math.random()*10));
 						} while (transactionAmount == 0);
 						localBalance = account.deposit(transactionAmount);
 						cardBalance += transactionAmount;
-						Integer[] array = {(int)getId(),0,transactionAmount,localBalance};
+						Integer[] array = {(int)getId(), 0, transactionAmount, localBalance};
 						getTransaction().add(array);
 					}
 				}
-				//Makes the thread pause for 0.2 seconds which helps to interrupt the flow of the threads
+				// Makes the thread pause for 0.2 seconds which helps to interrupt the flow of the threads
 				sleep(200);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		//Prints the balance of transactions for each card
+		// Prints the balance of transactions for each card
 		System.out.println("THREAD " + getId() + "  balance of transactions: " + cardBalance);		
 	}
 	
 
 	
-	//Getters and Setters for localBalance and transaction
+	// Getters and Setters for localBalance and transaction
 	public int getLocalBalance() {
 		return localBalance;
 	}
