@@ -35,10 +35,10 @@ public class Card extends Thread {
 						do { // Ensures that the transactionAmount can never be 0
 							transactionAmount = ((int) (Math.random()*10));
 						} while (transactionAmount == 0);						
-						localBalance = account.withdraw(transactionAmount);						// Update the account balance						
-						cardBalance += transactionAmount;										// Keep track of the individual card balance						
+						localBalance = account.withdraw(transactionAmount);			// Update the account balance						
+						cardBalance += transactionAmount;					// Keep track of the individual card balance						
 						Integer[] array = {(int)getId(), transactionAmount, 0, localBalance};	// Create an array of each individual transaction						
-						getTransaction().add(array);											// Store all transaction records in an ArrayList
+						getTransaction().add(array);						// Store all transaction records in an ArrayList
 					}
 				} else {
 					// This is the method for depositing
