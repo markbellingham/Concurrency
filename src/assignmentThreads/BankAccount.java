@@ -45,7 +45,7 @@ public class BankAccount {
 			threadNumber 		= Card.getTransaction().get(i)[0];
 			withdrawalAmount 	= Card.getTransaction().get(i)[1];
 			depositAmount 		= Card.getTransaction().get(i)[2];
-			balance 			= Card.getTransaction().get(i)[3];
+			balance 		= Card.getTransaction().get(i)[3];
 			
 			// Print each transaction formatted with tabs and spaces
 			System.out.print("   " + transactionNumber);
